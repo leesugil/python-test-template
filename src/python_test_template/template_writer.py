@@ -44,7 +44,7 @@ def case_and_test_statement(function, module):
 
     output = f"def test_{function['name']}():"
     
-    def case_list(args):
+    def case_list(args, return_type):
         """
         'args': *[{'name': arg_name, 'type': arg_type, 'default': arg_default}, ...]
         """
@@ -58,14 +58,17 @@ def case_and_test_statement(function, module):
 #           output += f"""
 #                   '{a['name']}': ,"""
         output += """
-                    },
+                    },"""
+        output += f"""
+                #{return_type}"""
+        output += """
                 'expected': ,
                 },
             ]
 """
         return output
 
-    output += case_list(function['args'])
+    output += case_list(function['args'], function['return'])
     output += f"""
     for case in cases:
         assert {module}.{function['name']}(case['args']) == case['expected']

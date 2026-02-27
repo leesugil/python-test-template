@@ -34,8 +34,10 @@ def parse_return(return_obj: str) -> str:
     """
     if not return_obj:
         return ''
-    pattern = r'^\s*([\w\[\]\(\)]+)\s*$'
+    pattern = r'^\s*->\s*([\w\[\]\(\)]+)\s*$'
     match = re.match(pattern, return_obj)
+    logger.debug(f"parse_return return_obj: {return_obj}")
+    logger.debug(f"parse_return match: {match}")
     if match:
         return (match.group(1) or '').strip()
     else:

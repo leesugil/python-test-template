@@ -7,6 +7,7 @@ def test_parse_args():
                 'args': {
                     #args: str, debug=False
                     },
+                #list[dict]
                 'expected': ,
                 },
             ]
@@ -20,6 +21,7 @@ def test_parse_return():
                 'args': {
                     #return_obj: str
                     },
+                #str
                 'expected': ,
                 },
             ]
@@ -33,6 +35,7 @@ def test_parse_functions():
                 'args': {
                     #filepath: str, target_functions: list[str], debug=False
                     },
+                #list[dict]
                 'expected': ,
                 },
             ]

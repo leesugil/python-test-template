@@ -7,6 +7,7 @@ def test_confirm_src():
                 'args': {
                     #src: list[str]
                     },
+                #
                 'expected': ,
                 },
             ]
@@ -20,6 +21,7 @@ def test_path2package():
                 'args': {
                     #path: Path
                     },
+                #str
                 'expected': ,
                 },
             ]
@@ -33,6 +35,7 @@ def test_confirm_package_module():
                 'args': {
                     #src: list[str], package: list[str]
                     },
+                #dict
                 'expected': ,
                 },
             ]
@@ -46,6 +49,7 @@ def test_get_target_modules():
                 'args': {
                     #src: list[str], package: list[str], module: list[str], debug=False
                     },
+                #list[str]
                 'expected': ,
                 },
             ]

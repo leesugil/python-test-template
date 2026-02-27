@@ -7,6 +7,7 @@ def test_compose_path():
                 'args': {
                     #module: dict
                     },
+                #str
                 'expected': ,
                 },
             ]
@@ -20,6 +21,7 @@ def test_case_and_test_statement():
                 'args': {
                     #function, module
                     },
+                #
                 'expected': ,
                 },
             ]
@@ -31,8 +33,9 @@ def test_case_list():
     cases = [
                 {
                 'args': {
-                    #args
+                    #args, return_type
                     },
+                #
                 'expected': ,
                 },
             ]
@@ -46,6 +49,7 @@ def test_compose_template():
                 'args': {
                     #module: str, functions: list[dict]
                     },
+                #
                 'expected': ,
                 },
             ]
@@ -59,6 +63,7 @@ def test_generate_template():
                 'args': {
                     #target_modules: list[str], target_functions: list[str], target_dest: str='.', debug=False
                     },
+                #
                 'expected': ,
                 },
             ]
