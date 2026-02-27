@@ -5,7 +5,7 @@ def test_confirm_src():
     cases = [
                 {
                 'args': {
-                    'src': ,
+                    #src: list[str]
                     },
                 'expected': ,
                 },
@@ -18,7 +18,7 @@ def test_path2package():
     cases = [
                 {
                 'args': {
-                    'path': ,
+                    #path: Path
                     },
                 'expected': ,
                 },
@@ -31,8 +31,7 @@ def test_confirm_package_module():
     cases = [
                 {
                 'args': {
-                    'src': ,
-                    'package': ,
+                    #src: list[str], package: list[str]
                     },
                 'expected': ,
                 },
@@ -45,9 +44,7 @@ def test_get_target_modules():
     cases = [
                 {
                 'args': {
-                    'src': ,
-                    'package': ,
-                    'module': ,
+                    #src: list[str], package: list[str], module: list[str], debug=False
                     },
                 'expected': ,
                 },

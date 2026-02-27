@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 import argparse
 
+import logging
+
+logging.basicConfig(
+    level=logging.DEBUG,      # Minimum level to capture
+    format="%(asctime)s [%(levelname)s] %(message)s",
+)
+
 from . import parse_paths
 from . import template_writer
 
@@ -27,7 +34,7 @@ def main():
     target_modules = parse_paths.get_target_modules(src=args.src, package=args.package, module=args.module, debug=debug)
     if debug:
         print(f"target_modules: {target_modules}")
-    template_writer.generate_template(target_modules=target_modules, target_functions=args.function, target_dest=args.dest)
+    template_writer.generate_template(target_modules=target_modules, target_functions=args.function, target_dest=args.dest, debug=debug)
 
 
 if __name__ == "__main__":

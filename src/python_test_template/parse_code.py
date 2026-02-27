@@ -1,15 +1,21 @@
+import logging
+logger = logging.getLogger(__name__)
+
 import re
 from pathlib import Path
 
-def parse_args(args: str) -> list[dict]:
+# DEPRECIATED. NOT WORKING IN EDGE CASES.
+def parse_args(args: str, debug=False) -> list[dict]:
     """
-    args: 'x: int=0, y: str'+"='nice'"+', z: str="hell yeah"'
+    args: 'x: int=0, y: str'+"='nice'"+', z: str="hell yeah", debug=False, dummy: str=",.:"'
     Return: [{'name': some_argument_name, 'type': data type if specified, 'default': default value if specified}, ...]
     """
+    #logger.debug(f"parse_args args: {args}")
     if not args:
         return []
-    pattern = r'\s*(\w+):\s*([\w\[\]\(\)]+)=?(.*?)\s*,?'
+    pattern = r'\s*(\w+):?\s*([\w\[\]\(\)]+)=?(.*?)\s*,?'
     match_tuples = re.findall(pattern, args)
+    #logger.debug(f"parse_args match_tuples: {match_tuples}")
     output = []
     for name, typ, default in match_tuples:
         d = {
@@ -35,7 +41,7 @@ def parse_return(return_obj: str) -> str:
     else:
         return ''
 
-def parse_functions(filepath: str, target_functions: list[str]) -> list[dict]:
+def parse_functions(filepath: str, target_functions: list[str], debug=False) -> list[dict]:
     """
     Return: [ {
                 'name': function_name,
@@ -54,10 +60,13 @@ def parse_functions(filepath: str, target_functions: list[str]) -> list[dict]:
     lines = content.splitlines()
     for ln, line in enumerate(lines, start=1):
         match = re.match(pattern, line)
+        if debug:
+            print(f"parse_functions match: {match}")
         if match and match.group(1):
             d = {
                     'name': match.group(1),
-                    'args': parse_args(match.group(2)),
+                    #'args': parse_args(match.group(2)),
+                    'args': match.group(2),
                     'return': parse_return(match.group(3)),
                     'line': ln
                     }

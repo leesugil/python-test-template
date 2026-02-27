@@ -18,7 +18,7 @@ def case_and_test_statement(function, module):
     """
     function: {
                 'name': function_name,
-                'args': [{'name': arg_name, 'type': arg_type, 'default': arg_default}, ...],
+                'args': *[{'name': arg_name, 'type': arg_type, 'default': arg_default}, ...],
                 'return':,
                 'line':
                 }
@@ -46,15 +46,17 @@ def case_and_test_statement(function, module):
     
     def case_list(args):
         """
-        'args': [{'name': arg_name, 'type': arg_type, 'default': arg_default}, ...]
+        'args': *[{'name': arg_name, 'type': arg_type, 'default': arg_default}, ...]
         """
         output = """
     cases = [
                 {
                 'args': {"""
-        for a in args:
-            output += f"""
-                    '{a['name']}': ,"""
+        output += f"""
+                    #{args}"""
+#       for a in args:
+#           output += f"""
+#                   '{a['name']}': ,"""
         output += """
                     },
                 'expected': ,
@@ -77,7 +79,7 @@ def compose_template(module: str, functions: list[dict]):
     module: { 'src': 'src/path', 'package': 'package.name', 'module': 'module_name' }
     functions: [{
                 'name': function_name,
-                'args': [{'name': arg_name, 'type': arg_type, 'default': arg_default}, ...],
+                'args': *[{'name': arg_name, 'type': arg_type, 'default': arg_default}, ...],
                 'return':,
                 'line':
                 }, ... ]
@@ -93,7 +95,7 @@ from {module['package']} import {module['module']}
 
     return output
 
-def generate_template(target_modules: list[str], target_functions: list[str], target_dest: str='.'):
+def generate_template(target_modules: list[str], target_functions: list[str], target_dest: str='.', debug=False):
     """
     target_modules: [ module: { 'src': 'src/path', 'package': 'package.name', 'module': 'module_name' }, ... ]
     target_functions: [ 'fc1', 'fc2', ... ]
@@ -103,7 +105,7 @@ def generate_template(target_modules: list[str], target_functions: list[str], ta
     for m in target_modules:
         # generate template per each module
         module_path = compose_path(module=m)
-        functions = parse_code.parse_functions(filepath=module_path, target_functions=target_functions)
+        functions = parse_code.parse_functions(filepath=module_path, target_functions=target_functions, debug=debug)
         template_body = compose_template(module=m, functions=functions)
 
         # create tests/src/package/ folder if it doesn't exist (the directory path to {m})

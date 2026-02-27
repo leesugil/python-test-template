@@ -5,7 +5,7 @@ def test_parse_args():
     cases = [
                 {
                 'args': {
-                    'args': ,
+                    #args: str, debug=False
                     },
                 'expected': ,
                 },
@@ -18,7 +18,7 @@ def test_parse_return():
     cases = [
                 {
                 'args': {
-                    'return_obj': ,
+                    #return_obj: str
                     },
                 'expected': ,
                 },
@@ -31,8 +31,7 @@ def test_parse_functions():
     cases = [
                 {
                 'args': {
-                    'filepath': ,
-                    'target_functions': ,
+                    #filepath: str, target_functions: list[str], debug=False
                     },
                 'expected': ,
                 },
